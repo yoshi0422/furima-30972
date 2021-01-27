@@ -1,54 +1,24 @@
-# テーブル設計
+# README
 
-## usersテーブル
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-| Column            |  Type     | Options      |
-| ----------------  | --------- | -----------  |
-| nickname          | string    | null: false  |
-| email             | string    | null: false  |
-| password          | string    | null: false  |
-| password_confirm  | string    | null: false  |
-| name              | string    | null: false  |
-| name_kana         | string    | null: false  |
-| birthday          | integer   | null: false  |
+Things you may want to cover:
 
-###Association
+* Ruby version
 
-- has_many :item
-- has_many :order
+* System dependencies
 
-## itemsテーブル
+* Configuration
 
-| Column            |  Type     | Options      |
-| ----------------  | --------- | -----------  |
-| item_name         | string    | null: false  |
-| text              | text      | null: false  |
-| detail            | string    | null: false  |
-| send              | string    | null: false  |
-| price             | integer   | null: false  |
-| user              | references| null: false, foreign_key: true  |
+* Database creation
 
-###Association
+* Database initialization
 
-- belongs_to :user
-- has_one :order
+* How to run the test suite
 
-## ordersテーブル
+* Services (job queues, cache servers, search engines, etc.)
 
-| Column            |  Type     | Options      |
-| ----------------  | --------- | -----------  |
-| card_number       | string    | null: false  |
-| card_limit        | string    | null: false  |
-| card_code         | string    | null: false  |
-| postal_code       | string    | null: false  |
-| prefectures       | string    | null: false  |
-| address           | string    | null: false  |
-| building_name     | string    | null: false  |
-| phone_number      | string    | null: false  |
-| user              | references| null: false, foreign_key: true  |
+* Deployment instructions
 
-###Association
-
-- belongs_to :user
-- belongs_to :item
-
+* ...
