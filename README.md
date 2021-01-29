@@ -27,7 +27,7 @@
 | category_id       | integer   | null: false  |
 | condition_id      | integer   | null: false  |
 | delivery_fee_id   | integer   | null: false  |
-| delivery_area_id  | integer   | null: false  |
+| prefectures_id    | integer   | null: false  |
 | delivery_days_id  | integer   | null: false  |
 | price             | integer   | null: false  |
 | user              | references| null: false, foreign_key: true  |
@@ -60,6 +60,7 @@
 | address           | string    | null: false  |
 | building_name     | string    |              |
 | phone_number      | string    | null: false  |
+| order             | references| null: false, foreign_key: true  |
 
 - belongs_to :order
 
