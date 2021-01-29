@@ -7,8 +7,10 @@
 | nickname          | string    | null: false  |
 | email             | string    | null: false  |
 | encrypted_password| string    | null: false  |
-| name              | string    | null: false  |
-| name_kana         | string    | null: false  |
+| familyname        | string    | null: false  |
+| firstname         | string    | null: false  |
+| familyname_kana   | string    | null: false  |
+| firstname_kana    | string    | null: false  |
 | birthday          | date      | null: false  |
 
 ###Association
@@ -22,11 +24,11 @@
 | ----------------  | --------- | -----------  |
 | item_name         | string    | null: false  |
 | text              | text      | null: false  |
-| category          | integer   | null: false  |
-| condition         | integer   | null: false  |
-| delivery_fee      | integer   | null: false  |
-| delivery_area     | integer   | null: false  |
-| delivery_days     | integer   | null: false  |
+| category_id       | integer   | null: false  |
+| condition_id      | integer   | null: false  |
+| delivery_fee_id   | integer   | null: false  |
+| delivery_area_id  | integer   | null: false  |
+| delivery_days_id  | integer   | null: false  |
 | price             | integer   | null: false  |
 | user              | references| null: false, foreign_key: true  |
 
@@ -46,6 +48,7 @@
 
 - belongs_to :user
 - belongs_to :item
+- has_one :address
 
 ## addresses
 
@@ -53,6 +56,7 @@
 | ----------------  | --------- | -----------  |
 | postal_code       | string    | null: false  |
 | prefectures_id    | integer   | null: false  |
+| municipality      | integer   | null: false  |
 | address           | string    | null: false  |
 | building_name     | string    |              |
 | phone_number      | string    | null: false  |
