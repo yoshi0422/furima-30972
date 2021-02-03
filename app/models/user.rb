@@ -5,8 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   with_options presence: true do
-    validates :password, format: { with: /\A[a-zA-Z0-9]+\z/,message: "is invalid. Input half-size characters."}
-    validates :password, length: {minimum: 6}
+    validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i ,message: "is invalid. Input half-size characters."}, length: {minimum: 6}
     validates :nickname
     validates :familyname, format: { with: /\A[ぁ-んァ-ン一-龥々]/,message: "is invalid. Input full-width characters." }
     validates :firstname, format: { with: /\A[ぁ-んァ-ン一-龥々]/,message: "is invalid. Input full-width characters." }
