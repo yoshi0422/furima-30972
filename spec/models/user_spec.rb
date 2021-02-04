@@ -81,17 +81,35 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password is invalid. Input half-size characters.")
       end
-      it "familynameとfirstnameが半角では登録できない" do
+      it "familynameが半角では登録できない" do
         @user.familyname = "yamada"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Familyname is invalid. Input full-width characters.")
+      end
+      it "firstnameが半角では登録できない" do
         @user.firstname = "taro"
         @user.valid?
-        expect(@user.errors.full_messages).to include("Familyname is invalid. Input full-width characters.", "Firstname is invalid. Input full-width characters.")
+        expect(@user.errors.full_messages).to include( "Firstname is invalid. Input full-width characters.")
       end
-      it "familyname_kanaとfirstname_kanaが漢字では登録できない" do
+      it "familyname_kanaが漢字では登録できない" do
         @user.familyname_kana = "山田"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Familyname kana is invalid. Input full-width katakana characters.")
+      end
+      it "firstname_kanaが漢字では登録できない" do
         @user.firstname_kana = "太郎"
         @user.valid?
-        expect(@user.errors.full_messages).to include("Familyname kana is invalid. Input full-width katakana characters.","Firstname kana is invalid. Input full-width katakana characters.")
+        expect(@user.errors.full_messages).to include("Firstname kana is invalid. Input full-width katakana characters.")
+      end
+      it "familyname_kanaが半角では登録できない" do
+        @user.familyname_kana = "yamada"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Familyname kana is invalid. Input full-width katakana characters.")
+      end
+      it "firstname_kanaが半角では登録できない" do
+        @user.firstname_kana = "Taro"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Firstname kana is invalid. Input full-width katakana characters.")
       end
       it "emailに@がついていないと登録できない" do
         @user.email = "samplegmail.com"
