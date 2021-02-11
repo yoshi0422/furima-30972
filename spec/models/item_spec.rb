@@ -23,29 +23,29 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Text can't be blank")
       end
       it "categoryが空では登録できない" do
-        @item.category = ""
+        @item.category_id = ""
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category can't be blank")
+        expect(@item.errors.full_messages).to include("Category is not a number")
       end
       it "conditionが空では登録できない" do
-        @item.condition = ""
+        @item.condition_id = ""
         @item.valid?
-        expect(@item.errors.full_messages).to include("Condition can't be blank")
+        expect(@item.errors.full_messages).to include("Condition is not a number")
       end
       it "delivery_feeが空では登録できない" do
-        @item.delivery_fee = ""
+        @item.delivery_fee_id = ""
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery_fee can't be blank")
+        expect(@item.errors.full_messages).to include("Delivery fee is not a number")
       end
       it "prefecturesが空では登録できない" do
-        @item.prefectures = ""
+        @item.prefectures_id = ""
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefectures can't be blank")
+        expect(@item.errors.full_messages).to include("Prefectures is not a number")
       end
       it "delivery_daysが空では登録できない" do
-        @item.delivery_days = ""
+        @item.delivery_days_id = ""
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery_days can't be blank")
+        expect(@item.errors.full_messages).to include("Delivery days is not a number")
       end
       it "priceが空では登録できない" do
         @item.price = ""
@@ -53,7 +53,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it "priceが全角では登録できない" do
-        @item.price = "１００００"
+        @item.price = "１０００"
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is invalid. Input half-size characters.")
       end

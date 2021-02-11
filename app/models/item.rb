@@ -2,7 +2,7 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :name
     validates :text
-    validates :price
+    validates :price, numericality: { message: "is invalid. Input half-size characters."}
   end
 
   with_options numericality: { other_than: 1 } do
@@ -13,7 +13,7 @@ class Item < ApplicationRecord
     validates :delivery_days_id 
   end
 
-  belongs_to :users
+  belongs_to :user
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions

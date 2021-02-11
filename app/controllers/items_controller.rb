@@ -4,10 +4,10 @@ class ItemsController < ApplicationController
     @items = Item.all
   end
   def new
-    @items = Item.order("created_at DESC")
+    @items = Item.new
   end
   def create
-    @ites = Item.new(item_params)
+    @items = Item.new(item_params)
     @items.save
     if @items.save
       redirect_to root_path
