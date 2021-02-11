@@ -2,6 +2,7 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :name
     validates :text
+    validates :image
     validates :price, numericality: { message: "is invalid. Input half-size characters."}
     validates_inclusion_of :price, in: 300..9999999
   end
