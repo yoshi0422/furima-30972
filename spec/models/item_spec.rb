@@ -57,6 +57,51 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is invalid. Input half-size characters.")
       end
+      it "priceが半角英数字混合では登録できない" do
+        @item.price = "3a00"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is invalid. Input half-size characters.")
+      end
+      it "priceが半角英字のみでは登録できない" do
+        @item.price = "aaaaa"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is invalid. Input half-size characters.")
+      end
+      it "priceが299円以下では登録できない" do
+        @item.price = 100
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not included in the list")
+      end
+      it "priceが10000000円以上では登録できない" do
+        @item.price = 10000000
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not included in the list")
+      end
+      it "categoryのidが1が選択されている場合は登録できない" do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
+      end
+      it "conditionのidが1が選択されている場合は登録できない" do
+        @item.condition_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Condition must be other than 1")
+      end
+      it "delivery_feeのidが1が選択されている場合は登録できない" do
+        @item.delivery_fee_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Delivery fee must be other than 1")
+      end
+      it "prefecturesのidが1が選択されている場合は登録できない" do
+        @item.prefectures_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Prefectures must be other than 1")
+      end
+      it "delivery_daysのidが1が選択されている場合は登録できない" do
+        @item.delivery_days_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Delivery days must be other than 1")
+      end
       it "userが紐付いていないと保存できない" do
         @item.user = nil
         @item.valid?

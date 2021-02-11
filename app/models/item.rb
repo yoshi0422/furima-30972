@@ -3,6 +3,7 @@ class Item < ApplicationRecord
     validates :name
     validates :text
     validates :price, numericality: { message: "is invalid. Input half-size characters."}
+    validates_inclusion_of :price, in: 300..9999999
   end
 
   with_options numericality: { other_than: 1 } do
