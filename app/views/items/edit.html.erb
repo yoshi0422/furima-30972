@@ -5,6 +5,7 @@ app/assets/stylesheets/items/new.css %>
   <header class="items-sell-header">
     <%= link_to image_tag('furima-logo-color.png' , size: '185x50'), "/" %>
   </header>
+  <% if user_signed_in?  %>
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
     <%= form_with model: @item, local: true do |f| %>
@@ -145,6 +146,7 @@ app/assets/stylesheets/items/new.css %>
     </div>
     <%# /下部ボタン %>
   </div>
+  <% end %>
   <% end %>
 
   <footer class="items-sell-footer">
