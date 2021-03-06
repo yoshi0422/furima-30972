@@ -2,11 +2,13 @@ class OrderForm
   include ActiveModel::Model
   attr_accessor  :postal_code, :prefectures_id, :municipality, :address, :building_name, :phone_number, :token, :user_id, :item_id
 
-  validates :prefectures_id, numericality: { other_than: 1 }  
-  validates :postal_code, format: {with: /\A\d{3}[-]\d{4}\z/}
-  validates :municipality, presence: true
-  validates :address, presence: true
-  validates :phone_number, length: {maximum: 11}
+  with_options presence: true do
+    validates :prefectures_id, numericality: { other_than: 1 }  
+    validates :postal_code, format: {with: /\A\d{3}[-]\d{4}\z/}
+    validates :municipality
+    validates :address
+    validates :phone_number, length: {maximum: 11}
+  end
 
   def save
     order = Order.create(user_id: user_id,item_id: item_id)
