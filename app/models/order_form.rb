@@ -8,6 +8,7 @@ class OrderForm
     validates :municipality
     validates :address
     validates :phone_number, length: {maximum: 11}
+    validates :token
   end
 
   def save
