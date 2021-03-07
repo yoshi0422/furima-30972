@@ -7,8 +7,12 @@ RSpec.describe OrderForm, type: :model do
 
   describe '商品購入機能' do
     context '登録できるとき' do
-     it "postal_code,prefectures_id,municipality,address,phone_number,tokenが存在すれば登録できる" do
+     it "postal_code,prefectures_id,municipality,address,phone_number,token,user_id,item_idが存在すれば登録できる" do
        expect(@order_form).to be_valid
+     end
+     it "building_nameが空でも登録できる" do
+      @order_form.building_name  = ""
+      expect(@order_form).to be_valid
      end
     end
     context '登録できないとき' do
@@ -37,6 +41,16 @@ RSpec.describe OrderForm, type: :model do
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include("Phone number can't be blank")
       end
+      it "user_idが空では登録できない" do
+        @order_form.user_id = ""
+        @order_form.valid?
+        expect(@order_form.errors.full_messages).to include("User can't be blank")
+      end
+      it "item_idが空では登録できない" do
+        @order_form.user_id = ""
+        @order_form.valid?
+        expect(@order_form.errors.full_messages).to include("User can't be blank")
+      end
       it "prefecturesのidが1が選択されている場合は登録できない" do
         @order_form.prefectures_id = 1
         @order_form.valid?
@@ -48,9 +62,14 @@ RSpec.describe OrderForm, type: :model do
         expect(@order_form.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
       end
       it "postal_codeはハイフンがないと登録できない" do
-        @order_form.postal_code = 0000000
+        @order_form.postal_code = '0000000'
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include("Postal code is invalid")
+      end
+      it "phone_numberはハイフンがあると登録できない" do
+        @order_form.phone_number = '080-1111-1111'
+        @order_form.valid?
+        expect(@order_form.errors.full_messages).to include("Phone number is invalid. Input half-size characters.")
       end
       it "tokenが空では登録できない" do
         @order_form.token = ""

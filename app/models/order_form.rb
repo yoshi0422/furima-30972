@@ -7,8 +7,10 @@ class OrderForm
     validates :postal_code, format: {with: /\A\d{3}[-]\d{4}\z/}
     validates :municipality
     validates :address
-    validates :phone_number, length: {maximum: 11}
+    validates :phone_number, length: {maximum: 11}, numericality: { message: "is invalid. Input half-size characters."}
     validates :token
+    validates :user_id
+    validates :item_id
   end
 
   def save
