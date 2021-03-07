@@ -74,6 +74,11 @@ RSpec.describe OrderForm, type: :model do
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include("Phone number is invalid. Input half-size characters.")
       end
+      it "phone_numberが英数字混合では登録できない" do
+        @order_form.phone_number = "0901a1a1a1a"
+        @order_form.valid?
+        expect(@order_form.errors.full_messages).to include("Phone number is invalid. Input half-size characters.")
+      end
       it "tokenが空では登録できない" do
         @order_form.token = ""
         @order_form.valid?
