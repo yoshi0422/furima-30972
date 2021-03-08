@@ -4,9 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
-  with_options presence: true do
+    with_options presence: true do
     validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i ,message: "is invalid. Input half-size characters."}, length: {minimum: 6}
     validates :nickname
+    validates :birthday
       with_options format: { with: /\A[ぁ-んァ-ン一-龥々]/,message: "is invalid. Input full-width characters." } do
         validates :familyname
         validates :firstname
@@ -15,8 +16,8 @@ class User < ApplicationRecord
         validates :familyname_kana
         validates :firstname_kana
       end
-    validates :birthday
-  end
+    end
 
   has_many :items
+  has_many :orders
 end
