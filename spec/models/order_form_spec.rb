@@ -50,9 +50,9 @@ RSpec.describe OrderForm, type: :model do
         expect(@order_form.errors.full_messages).to include("User can't be blank")
       end
       it "item_idが空では登録できない" do
-        @order_form.user_id = ""
+        @order_form.item_id = ""
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include("User can't be blank")
+        expect(@order_form.errors.full_messages).to include("Item can't be blank")
       end
       it "prefecturesのidが1が選択されている場合は登録できない" do
         @order_form.prefectures_id = 1
